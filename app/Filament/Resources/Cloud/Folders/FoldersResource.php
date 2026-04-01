@@ -20,7 +20,7 @@ class FoldersResource extends Resource
     protected static ?string $model = Folder::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
- 
+
     protected static string | UnitEnum | null $navigationGroup = 'Cloud';
 
     protected static ?int $navigationSort = 0;

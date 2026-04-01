@@ -24,7 +24,7 @@ class FirmwareForm
                 // 🔹 HEADER
                 Grid::make(12)->schema([
                     Forms\Components\TextInput::make('name')
-                    ->label(__('filament/admin/firmware_resource.name'))
+                    ->label(__('name'))
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
@@ -51,13 +51,13 @@ class FirmwareForm
                         ->imageCropAspectRatio('1:1')
                         ->imageResizeTargetWidth(200)
                         ->imageResizeTargetHeight(200)
-                        ->label(__('filament/admin/firmware_resource.icon_path'))
+                        ->label(__('icon_path'))
                         ->columnSpan(2),
                 ]),
 
                 // 🔹 DESCRIPCIÓN
                 Forms\Components\RichEditor::make('description')
-                    ->label(__('filament/admin/firmware_resource.description'))
+                    ->label(__('description'))
                     ->toolbarButtons([
                         'bold', 'italic', 'underline',
                         'bulletList', 'orderedList', 'link', 'codeBlock',
@@ -73,7 +73,7 @@ class FirmwareForm
                         Grid::make(12)->schema([
 
                             Forms\Components\TextInput::make('size')
-                    ->label(__('filament/admin/firmware_resource.size'))
+                    ->label(__('size'))
                                 ->required()
                                 ->numeric()
                                 ->step(0.01)
@@ -84,9 +84,9 @@ class FirmwareForm
                                 ->columnSpan(3),
 
                             Forms\Components\Select::make('size_unit')
-                    ->label(__('filament/admin/firmware_resource.size_unit'))
-                                ->options(['KB' => __('filament/admin/firmware_resource.size_unit.k_b'), 'MB' => __('filament/admin/firmware_resource.size_unit.m_b'), 'GB' => __('filament/admin/firmware_resource.size_unit.g_b'), 'TB' => __('filament/admin/firmware_resource.size_unit.t_b')])
-                                ->default(__('filament/admin/firmware_resource.size_unit_default'))
+                    ->label(__('size_unit'))
+                                ->options(['KB' => __('k_b'), 'MB' => __('m_b'), 'GB' => __('filament/admin/firmware_resource.size_unit.g_b'), 'TB' => __('filament/admin/firmware_resource.size_unit.t_b')])
+                                ->default(__('size_unit_default'))
                                 ->required()
                                 ->live()
                                 ->afterStateUpdated(function (Get $get, Set $set) {
@@ -95,21 +95,21 @@ class FirmwareForm
                                 ->columnSpan(2),
 
                             Forms\Components\TextInput::make('formatted_size')
-                                ->label(__('filament/admin/firmware_resource.formatted_size'))
+                                ->label(__('formatted_size'))
                                 ->disabled()
                                 ->dehydrated(false)
                                 ->columnSpan(3),
 
                             Forms\Components\Select::make('type')
-                    ->label(__('filament/admin/firmware_resource.type'))
-                                ->options(['free' => __('filament/admin/firmware_resource.type.free'), 'featured' => __('filament/admin/firmware_resource.type.featured'), 'paid' => __('filament/admin/firmware_resource.type.paid')])
-                                ->default(__('filament/admin/firmware_resource.type_default'))
+                    ->label(__('type'))
+                                ->options(['free' => __('free'), 'featured' => __('featured'), 'paid' => __('fpaid')])
+                                ->default(__('type_default'))
                                 ->live()
                                 ->required()
                                 ->columnSpan(2),
 
                             Forms\Components\TextInput::make('price')
-                    ->label(__('filament/admin/firmware_resource.price'))
+                    ->label(__('price'))
                                 ->numeric()
                                 ->prefix('$')
                                 ->hidden(fn(Get $get) => $get('type') !== 'paid')
@@ -123,7 +123,7 @@ class FirmwareForm
                         Grid::make(12)->schema([
 
                             Forms\Components\Select::make('folder_id')
-                                ->label(__('filament/admin/firmware_resource.folder_id'))
+                                ->label(__('folder_id'))
                                 ->options(
                                     fn() => Folder::whereNull('parent_id')
                                         ->orderBy('name')
@@ -135,7 +135,7 @@ class FirmwareForm
                                 ->columnSpan(6),
 
                             Forms\Components\Select::make('sub_folder_id')
-                                ->label(__('filament/admin/firmware_resource.sub_folder_id'))
+                                ->label(__('sub_folder_id'))
                                 ->options(function (Get $get) {
                                     $parentId = $get('folder_id');
                                     if (!$parentId) return [];
@@ -162,12 +162,12 @@ class FirmwareForm
                                 ->relationship('fileServer', 'name')
                                 ->searchable()
                                 ->preload()
-                                ->label(__('filament/admin/firmware_resource.file_server_id'))
+                                ->label(__('file_server_id'))
                                 ->columnSpan(6),
 
                             Forms\Components\Select::make('upload_type')
-                                ->label(__('filament/admin/firmware_resource.upload_type'))
-                                ->options(['direct' => __('filament/admin/firmware_resource.upload_type.direct'), 'url' => __('filament/admin/firmware_resource.upload_type.url'), 'ftp' => __('filament/admin/firmware_resource.upload_type.ftp')])
+                                ->label(__('upload_type'))
+                                ->options(['direct' => __('direct'), 'url' => __('url'), 'ftp' => __('ftp')])
                                 ->default('direct')
                                 ->required()
                                 ->live()
@@ -183,7 +183,7 @@ class FirmwareForm
 
                         // ✅ Condicional: archivo directo
                         Forms\Components\FileUpload::make('attachment')
-                            ->label(__('filament/admin/firmware_resource.attachment'))
+                            ->label(__('attachment'))
                             ->disk('public')
                             ->directory('uploads/' . now()->format('Y/m/d'))
                             ->visibility('private')
@@ -202,7 +202,7 @@ class FirmwareForm
 
                         // ✅ Condicional: URL externa
                         Forms\Components\TextInput::make('url')
-                            ->label(__('filament/admin/firmware_resource.url'))
+                            ->label(__('url'))
                             ->url()
                             ->maxLength(500)
                             ->hidden(fn(Get $get) => $get('upload_type') !== 'url')
@@ -218,31 +218,31 @@ class FirmwareForm
                                 Grid::make(12)->schema([
 
                                     Forms\Components\TextInput::make('ftp_host')
-                                        ->label(__('filament/admin/firmware_resource.ftp_host'))
+                                        ->label(__('ftp_host'))
                                         ->columnSpan(5),
 
                                     Forms\Components\TextInput::make('ftp_port')
-                                        ->label(__('filament/admin/firmware_resource.ftp_port'))
+                                        ->label(__('ftp_port'))
                                         ->numeric()
                                         ->default(21)
                                         ->columnSpan(2),
 
                                     Forms\Components\Select::make('ftp_mode')
-                                        ->label(__('filament/admin/firmware_resource.ftp_mode'))
-                                        ->options(['auto' => __('filament/admin/firmware_resource.ftp_mode.auto'), 'active' => __('filament/admin/firmware_resource.ftp_mode.active'), 'passive' => __('filament/admin/firmware_resource.ftp_mode.passive')])
+                                        ->label(__('ftp_mode'))
+                                        ->options(['auto' => __('auto'), 'active' => __('active'), 'passive' => __('passive')])
                                         ->columnSpan(5),
 
                                     Forms\Components\TextInput::make('ftp_username')
-                                        ->label(__('filament/admin/firmware_resource.ftp_username'))
+                                        ->label(__('ftp_username'))
                                         ->columnSpan(6),
 
                                     Forms\Components\TextInput::make('ftp_password')
-                                        ->label(__('filament/admin/firmware_resource.ftp_password'))
+                                        ->label(__('ftp_password'))
                                         ->password()
                                         ->columnSpan(6),
 
                                     Forms\Components\TextInput::make('ftp_path')
-                                        ->label(__('filament/admin/firmware_resource.ftp_path'))
+                                        ->label(__('ftp_path'))
                                         ->columnSpan(12),
                                 ]),
                             ])
@@ -260,7 +260,7 @@ class FirmwareForm
                         ->columnSpan(6),
 
                     Forms\Components\KeyValue::make('metadata')
-                        ->label(__('filament/admin/firmware_resource.metadata'))
+                        ->label(__('metadata'))
                         ->columnSpan(6),
                 ]),
 
@@ -271,19 +271,19 @@ class FirmwareForm
                     ->schema([
                         Grid::make(12)->schema([
                             Forms\Components\TextInput::make('downloads_count')
-                    ->label(__('filament/admin/firmware_resource.downloads_count'))
+                    ->label(__('downloads_count'))
                                 ->numeric()
                                 ->disabled()
                                 ->columnSpan(4),
 
                             Forms\Components\TextInput::make('views_count')
-                    ->label(__('filament/admin/firmware_resource.views_count'))
+                    ->label(__('views_count'))
                                 ->numeric()
                                 ->disabled()
                                 ->columnSpan(4),
 
                             Forms\Components\TextInput::make('rating')
-                    ->label(__('filament/admin/firmware_resource.rating'))
+                    ->label(__('rating'))
                                 ->numeric()
                                 ->disabled()
                                 ->columnSpan(4),

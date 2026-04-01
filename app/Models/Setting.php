@@ -13,8 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class Setting
  * 
  * @property int $id
- * @property string $key
+ * @property string $name
  * @property string|null $value
+ * @property string|null $group
+ * @property int|null $locked
+ * @property json|null $payload
  * @property string|null $footer_text
  * @property string|null $footer_quick_links_html
  * @property string|null $footer_support_links_html
@@ -39,10 +42,21 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
 	protected $table = 'settings';
+	
+	protected $casts = [
+		'id' => 'int',
+		'locked' => 'int',
+		'payload' => 'json',
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime',
+	];
 
 	protected $fillable = [
-		'key',
+		'name',        // ← Cambiado de 'key' a 'name'
 		'value',
+		'group',
+		'locked',
+		'payload',
 		'footer_text',
 		'footer_quick_links_html',
 		'footer_support_links_html',
@@ -60,4 +74,32 @@ class Setting extends Model
 		'update_log',
 		'api_key'
 	];
+	
+	// Método helper para obtener settings
+	public static function get($name, $default = null)
+	{
+		$setting = self::where('name', $name)->first();
+		return $setting ? $setting->value : $default;
+	}
+	
+	// Método helper para establecer settings
+	public static function set($name, $value)
+	{
+		return self::updateOrCreate(
+			['name' => $name],
+			['value' => $value]
+		);
+	}
+	
+	// Accessor para mantener compatibilidad con código que usa 'key'
+	public function getKeyAttribute()
+	{
+		return $this->name;
+	}
+	
+	// Scope para buscar por key (compatibilidad)
+	public function scopeWhereKey($query, $key)
+	{
+		return $query->where('name', $key);
+	}
 }

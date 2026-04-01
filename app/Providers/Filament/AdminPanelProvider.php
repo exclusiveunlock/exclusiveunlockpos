@@ -20,7 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use FinityLabs\FinMail\FinMailPlugin;
 use amidesfahani\FilamentPaymentManager\FilamentPaymentManagerPlugin;
-
+use NoteBrainsLab\FilamentMenuManager\FilamentMenuManagerPlugin;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -51,7 +51,7 @@ class AdminPanelProvider extends PanelProvider
                 \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
                     ->allowSiteSettings()
                     ->allowSocialMenuSettings(),
-
+              
                 \TomatoPHP\FilamentCms\FilamentCMSPlugin::make()
                     ->useCategory()
                     ->usePost()

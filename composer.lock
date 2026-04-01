@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c75c61027c3375ceb6fa53617c0d8e4",
+    "content-hash": "9606215667de0df687546d82f477b6bd",
     "packages": [
         {
             "name": "amidesfahani/filament-payment-manager",
@@ -3861,6 +3861,71 @@
             "time": "2025-12-10T09:58:31+00:00"
         },
         {
+            "name": "malzariey/filament-daterangepicker-filter",
+            "version": "4.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malzariey/filament-daterangepicker-filter.git",
+                "reference": "2d75b5a5b0e98cfb38861b7a5ce8ebbfc178c522"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malzariey/filament-daterangepicker-filter/zipball/2d75b5a5b0e98cfb38861b7a5ce8ebbfc178c522",
+                "reference": "2d75b5a5b0e98cfb38861b7a5ce8ebbfc178c522",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0|^5.0",
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^11.0|^12.0|^13.0",
+                "spatie/laravel-package-tools": "^1.16.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "FilamentDaterangepickerFilter": "Malzariey\\FilamentDaterangepickerFilter\\Facades\\FilamentDaterangepickerFilter"
+                    },
+                    "providers": [
+                        "Malzariey\\FilamentDaterangepickerFilter\\FilamentDaterangepickerFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Malzariey\\FilamentDaterangepickerFilter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Majid Al-Zariey",
+                    "email": "malzariey@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package uses daterangepciker library to filter date by a range or predefined date ranges (Today , Yesterday ...etc)",
+            "homepage": "https://github.com/malzariey/filament-daterangepicker-filter",
+            "keywords": [
+                "Malzariey",
+                "filament-daterangepicker-filter",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/malzariey/filament-daterangepicker-filter/issues",
+                "source": "https://github.com/malzariey/filament-daterangepicker-filter/tree/4.0.9"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Malzariey",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-22T20:37:45+00:00"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.10.0",
             "source": {
@@ -4661,6 +4726,72 @@
             "time": "2025-12-06T11:56:16+00:00"
         },
         {
+            "name": "notebrainslab/filament-menu-manager",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notebrainslab/filament-menu-manager.git",
+                "reference": "ed09b65d058ca70fd4b02206d2db4445f579364e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notebrainslab/filament-menu-manager/zipball/ed09b65d058ca70fd4b02206d2db4445f579364e",
+                "reference": "ed09b65d058ca70fd4b02206d2db4445f579364e",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0|^5.0",
+                "illuminate/contracts": "^11.0|^12.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.0",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NoteBrainsLab\\FilamentMenuManager\\FilamentMenuManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NoteBrainsLab\\FilamentMenuManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NoteBrainsLab",
+                    "email": "info@notebrainslab.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A powerful Filament v4 & v5 plugin for managing menus with multiple locations, drag & drop reordering, Eloquent model support, auto-save, and dark theme.",
+            "homepage": "https://github.com/notebrainslab/filament-menu-manager",
+            "keywords": [
+                "filament",
+                "filament-plugin",
+                "laravel",
+                "menu",
+                "menu-manager",
+                "navigation"
+            ],
+            "support": {
+                "issues": "https://github.com/notebrainslab/filament-menu-manager/issues",
+                "source": "https://github.com/notebrainslab/filament-menu-manager/tree/1.0.0"
+            },
+            "time": "2026-02-23T06:50:40+00:00"
+        },
+        {
             "name": "nunomaduro/termwind",
             "version": "v2.4.0",
             "source": {
@@ -4908,6 +5039,59 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2025-09-24T15:06:41+00:00"
+        },
+        {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "v1.6.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+                "reference": "06837d290c4906578cfd92786412dff330a1429c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/06837d290c4906578cfd92786412dff330a1429c",
+                "reference": "06837d290c4906578cfd92786412dff330a1429c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/paypal/PayPal-PHP-SDK/issues",
+                "source": "https://github.com/paypal/PayPal-PHP-SDK/tree/stable"
+            },
+            "abandoned": "paypal/paypal-server-sdk",
+            "time": "2016-01-20T17:45:52+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -6013,6 +6197,141 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.2"
             },
             "time": "2025-12-14T04:43:48+00:00"
+        },
+        {
+            "name": "rarq/filament-whatsapp-message-preview",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rodrigoarq14/filament-whatsapp-message-preview.git",
+                "reference": "17b32581f37adb0f6997795150643aa413dc030d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rodrigoarq14/filament-whatsapp-message-preview/zipball/17b32581f37adb0f6997795150643aa413dc030d",
+                "reference": "17b32581f37adb0f6997795150643aa413dc030d",
+                "shasum": ""
+            },
+            "require": {
+                "filament/forms": "^3.0|^4.0|^5.0",
+                "illuminate/contracts": "^10.0|^11.0|^12.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rarq\\FilamentWhatsappMessagePreview\\WhatsappMessagePreviewServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rarq\\FilamentWhatsappMessagePreview\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rodrigo Alfonso Ríos Quevedo",
+                    "email": "rodrigoarq140599@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A FilamentPHP field plugin that renders a real-time WhatsApp-style message preview with support for formatting, lists, quotes and message direction.",
+            "keywords": [
+                "filament",
+                "filament-forms",
+                "filament-package",
+                "filament-plugin",
+                "filamentphp",
+                "laravel",
+                "message",
+                "preview",
+                "whatsapp"
+            ],
+            "support": {
+                "issues": "https://github.com/rodrigoarq14/filament-whatsapp-message-preview/issues",
+                "source": "https://github.com/rodrigoarq14/filament-whatsapp-message-preview/tree/v1.0.0"
+            },
+            "time": "2026-03-03T22:21:57+00:00"
+        },
+        {
+            "name": "rickdbcn/filament-email",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RickDBCN/filament-email.git",
+                "reference": "40a7243da2b76488285d1c2db6e7964601a5e168"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RickDBCN/filament-email/zipball/40a7243da2b76488285d1c2db6e7964601a5e168",
+                "reference": "40a7243da2b76488285d1c2db6e7964601a5e168",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0|^5.0",
+                "illuminate/contracts": "^11.0|^12.0",
+                "laravel/framework": "^11.0|^12.0",
+                "malzariey/filament-daterangepicker-filter": "^4.0",
+                "php": "^8.3",
+                "spatie/laravel-package-tools": "^1.16.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^4.1",
+                "pestphp/pest-plugin-arch": "^4.0",
+                "pestphp/pest-plugin-laravel": "^4.0",
+                "pestphp/pest-plugin-livewire": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "FilamentEmail": "RickDBCN\\FilamentEmail\\Facades\\FilamentEmail"
+                    },
+                    "providers": [
+                        "RickDBCN\\FilamentEmail\\FilamentEmailServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RickDBCN\\FilamentEmail\\": "src/",
+                    "RickDBCN\\FilamentEmail\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rick de Boer",
+                    "email": "rickdb@calvintijd.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Log all outbound emails you send through your Filament application",
+            "homepage": "https://github.com/rickdbcn/filament-email",
+            "keywords": [
+                "RickDBCN",
+                "filament-email",
+                "laravel",
+                "marcogermani87"
+            ],
+            "support": {
+                "issues": "https://github.com/RickDBCN/filament-email/issues",
+                "source": "https://github.com/RickDBCN/filament-email/tree/v2.2.0"
+            },
+            "time": "2026-01-19T19:42:21+00:00"
         },
         {
             "name": "scrivo/highlight.php",

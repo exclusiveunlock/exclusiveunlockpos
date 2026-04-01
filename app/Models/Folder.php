@@ -21,98 +21,124 @@ class Folder extends Model
         'parent_id',
         'depth',
         'full_path',
+        'is_active', // ✅ IMPORTANTE
     ];
 
     protected $casts = [
         'depth' => 'integer',
+        'is_active' => 'boolean',
     ];
 
     /**
-     * Boot the model
+     * Boot
      */
-    protected static function boot()
+    protected static function booted()
     {
-        parent::boot();
-
         static::creating(function ($folder) {
-            if (empty($folder->slug)) {
-                $folder->slug = Str::slug($folder->name);
-            }
-            $folder->depth = $folder->parent ? $folder->parent->depth + 1 : 0;
-            $folder->full_path = $folder->generateFullPath();
+
+            // ✅ Slug único
+            $folder->slug = self::generateUniqueSlug($folder->name);
+
+            // ✅ Obtener parent correctamente
+            $parent = $folder->parent_id
+                ? self::find($folder->parent_id)
+                : null;
+
+            $folder->depth = $parent ? $parent->depth + 1 : 0;
+
+            $folder->full_path = $parent
+                ? $parent->full_path . ' > ' . $folder->name
+                : $folder->name;
         });
 
         static::updating(function ($folder) {
-            if ($folder->isDirty('parent_id') || $folder->isDirty('name')) {
-                $folder->depth = $folder->parent ? $folder->parent->depth + 1 : 0;
-                $folder->full_path = $folder->generateFullPath();
+
+            if ($folder->isDirty(['parent_id', 'name'])) {
+
+                $parent = $folder->parent_id
+                    ? self::find($folder->parent_id)
+                    : null;
+
+                $folder->depth = $parent ? $parent->depth + 1 : 0;
+
+                $folder->full_path = $parent
+                    ? $parent->full_path . ' > ' . $folder->name
+                    : $folder->name;
+            }
+        });
+
+        // 🔥 Mejor hacerlo después del update
+        static::updated(function ($folder) {
+            if ($folder->wasChanged(['parent_id', 'name'])) {
                 $folder->updateChildrenPaths();
             }
         });
     }
 
     /**
-     * Generate the full path for the folder
+     * Slug único automático
      */
-    public function generateFullPath(): string
+    public static function generateUniqueSlug(string $name): string
     {
-        if ($this->parent) {
-            return $this->parent->full_path . ' > ' . $this->name;
-        }
-        return $this->name;
+        $slug = Str::slug($name);
+        $count = self::where('slug', 'LIKE', "{$slug}%")->count();
+
+        return $count ? "{$slug}-{$count}" : $slug;
     }
 
     /**
-     * Update paths for all children
+     * Actualizar hijos recursivamente
      */
-    public function updateChildrenPaths()
+    public function updateChildrenPaths(): void
     {
-        foreach ($this->children as $child) {
+        foreach ($this->children()->get() as $child) {
+
             $child->depth = $this->depth + 1;
             $child->full_path = $this->full_path . ' > ' . $child->name;
+
             $child->save();
+
+            // recursion controlada
             $child->updateChildrenPaths();
         }
     }
-
+    public function firmware(): HasMany
+    {
+        return $this->hasMany(Firmware::class, 'folder_id');
+    }
     /**
-     * Get the parent folder
+     * Relaciones
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Folder::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
-    /**
-     * Get the child folders
-     */
     public function children(): HasMany
     {
-        return $this->hasMany(Folder::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
-    /**
-     * Get the firmwares in this folder
-     */
     public function firmwares(): HasMany
     {
         return $this->hasMany(Firmware::class, 'folder_id');
     }
+
+    /**
+     * Accessor icono
+     */
     public function getIconUrlAttribute(): string
     {
-        if ($this->icon_path) {
-            return asset('storage/' . $this->icon_path);
-        }
-
-        // Imagen por defecto en public/images/folder-default.png
-        return asset('images/folder-default.png');
+        return $this->icon_path
+            ? asset('storage/' . $this->icon_path)
+            : asset('images/folder-default.png');
     }
+
     /**
-     * Get the route key for the model
+     * Route model binding por slug
      */
     public function getRouteKeyName(): string
     {
         return 'slug';
     }
-    
 }
